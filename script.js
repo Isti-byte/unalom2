@@ -98,30 +98,8 @@ function drawMatrix(matrix, offset, context, texs){
   });
 }
 
-// textures will be generated from provided JPG
-const textures = [];
-const texImg = new Image();
-texImg.src = '22114.jpg';
-texImg.onload = () => createTextures();
-
-function createTextures(){
-  for(let i=1;i<=7;i++){
-    const oc = document.createElement('canvas');
-    oc.width = BLOCK; oc.height = BLOCK;
-    const octx = oc.getContext('2d');
-    // draw the source image scaled to cover the block
-    octx.drawImage(texImg, 0, 0, texImg.width, texImg.height, 0, 0, BLOCK, BLOCK);
-    // tint using source-atop so color shows through texture
-    octx.globalCompositeOperation = 'source-atop';
-    octx.fillStyle = COLORS[i];
-    octx.fillRect(0,0,BLOCK,BLOCK);
-    octx.globalCompositeOperation = 'source-over';
-    octx.strokeStyle = 'rgba(0,0,0,0.25)';
-    octx.lineWidth = 2;
-    octx.strokeRect(0,0,BLOCK,BLOCK);
-    textures[i] = oc;
-  }
-}
+// textures disabled — use flat COLORS instead of image textures
+const textures = null;
 
 function draw(){
   ctx.fillStyle = '#111';
